@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaoLista {
+public class DaoListaMock {
 	
 	public List<String> getLista(){
 		BufferedReader br =null;

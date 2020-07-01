@@ -27,7 +27,6 @@ public class App {
 
 			RecebimentoEmail rec = new RecebimentoEmail(capacity);
 			for (WordList w : dao.getWordList()) {
-				
 				rec.addFila(w);
 
 				if (rec.getFila().size() == capacity) {
