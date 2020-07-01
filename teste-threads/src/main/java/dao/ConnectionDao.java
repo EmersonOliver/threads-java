@@ -22,7 +22,6 @@ public class ConnectionDao {
 
 			con = DriverManager.getConnection(url, user, pass);
 			
-			System.out.println("Conexao aberta");
 		} catch (Exception e) {
 			System.out.println("Falha ao abrir conexao");
 		}

@@ -5,7 +5,7 @@ import java.util.concurrent.BlockingQueue;
 
 public abstract class AbstractProcessarDadosJob<E> implements Runnable {
 
-	private BlockingQueue<E> fila;
+	protected BlockingQueue<E> fila;
 	private int capacity;
 
 	public AbstractProcessarDadosJob(int capacity) {
@@ -16,18 +16,22 @@ public abstract class AbstractProcessarDadosJob<E> implements Runnable {
 	public void addFila(E vo) throws InterruptedException {
 		this.fila.put(vo);
 	}
-
-	@Override
-	public void run() {
-		
+	
+	private synchronized void executarFila() {
 		E value = null;
+		int i = 1;
 		try {
-			while ((value = fila.take()) != null) {
-				System.out.println(value +" thread: " + Thread.currentThread().getName());
-			}
+			value = fila.take();
+				System.out.println(value +" thread: " + Thread.currentThread().getName() +" dado:" + i++);
+			
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void run() {
+		executarFila();
 	}
 
 	public BlockingQueue<E> getFila() {

@@ -19,25 +19,23 @@ public class App {
 		 */
 		try {
 
-//			ExecutorService threadPool = Executors.newFixedThreadPool(5);
-//			DaoLista listaDao = new DaoLista();
-//			BlockingQueue<String> fila = null;
-//			for (int i = 0; i < 5; i++) {
-//				threadPool.execute(new TarefasLista(listaDao.getLista(),fila));
-//			}
-//			
-//			threadPool.shutdown();
-
 			DaoWordList dao = new DaoWordList();
-			ExecutorService executorService = Executors.newCachedThreadPool();
+			int size = dao.getWordList().size();
+			ExecutorService executorService = Executors.newFixedThreadPool(5);
+			float calc = (size / 5);
+			Integer capacity = Math.round(calc);
 
-			RecebimentoEmail rec = new RecebimentoEmail(100);
+			RecebimentoEmail rec = new RecebimentoEmail(capacity);
 			for (WordList w : dao.getWordList()) {
-				rec.addFila(w);
 				
-				if (rec.getFila().size() == 100) {
+				rec.addFila(w);
+
+				if (rec.getFila().size() == capacity) {
 					executorService.execute(rec);
+				} else {
+					continue;
 				}
+
 			}
 			executorService.shutdown();
 
