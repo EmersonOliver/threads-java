@@ -3,9 +3,9 @@ package principal;
 import dao.AbstractProcessarDadosJob;
 import model.WordList;
 
-public class RecebimentoEmail extends AbstractProcessarDadosJob<WordList> {
+public class RecebimentoWordList extends AbstractProcessarDadosJob<WordList> {
 
-	public RecebimentoEmail(int capacity) {
+	public RecebimentoWordList(int capacity) {
 		super(capacity);
 	}
 

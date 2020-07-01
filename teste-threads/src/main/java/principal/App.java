@@ -25,7 +25,7 @@ public class App {
 			float calc = (size / 5);
 			Integer capacity = Math.round(calc);
 
-			RecebimentoEmail rec = new RecebimentoEmail(capacity);
+			RecebimentoWordList rec = new RecebimentoWordList(capacity);
 			for (WordList w : dao.getWordList()) {
 				rec.addFila(w);
 
